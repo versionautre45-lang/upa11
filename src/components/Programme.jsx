@@ -90,19 +90,21 @@ const Programme = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group relative bg-white dark:bg-dark-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-dark-700"
+                onClick={() => openSchoolModal(school)}
+                className="group relative bg-white dark:bg-dark-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-dark-700 cursor-pointer"
+                whileHover={{ y: -8, scale: 1.02 }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${school.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${school.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
 
                 <div className="p-8">
                   <div className="flex items-start justify-between mb-6">
-                    <div className={`p-3 rounded-xl bg-gradient-to-br ${school.gradient} shadow-lg`}>
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${school.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <img src={school.image} alt={school.code} className="w-12 h-12 rounded-lg object-cover shadow-md" />
+                    <img src={school.image} alt={school.code} className="w-12 h-12 rounded-lg object-cover shadow-md group-hover:scale-110 transition-transform duration-300" />
                   </div>
 
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                     {school.code}
                   </h3>
                   <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">
@@ -116,13 +118,16 @@ const Programme = () => {
                     <span className="text-sm text-gray-500 dark:text-gray-400">
                       {school.programs} parcours disponibles
                     </span>
-                    <button
-                      onClick={() => openSchoolModal(school)}
-                      className={`group/btn flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r ${school.gradient} text-white font-medium transition-all duration-300 hover:shadow-lg hover:scale-105`}
-                    >
+                    <div className={`flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r ${school.gradient} text-white font-medium transition-all duration-300 group-hover:shadow-lg`}>
                       Découvrir
-                      <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
+                      <ChevronRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-white dark:bg-dark-700 rounded-full p-2 shadow-lg">
+                    <ChevronRight className={`w-5 h-5 bg-gradient-to-r ${school.gradient} bg-clip-text text-transparent`} />
                   </div>
                 </div>
               </motion.div>
